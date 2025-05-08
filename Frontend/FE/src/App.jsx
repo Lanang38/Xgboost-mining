@@ -9,7 +9,12 @@ function App() {
     windSpeed: "",
   });
 
-  const [displayData, setDisplayData] = useState(null);
+  const [displayData, setDisplayData] = useState({
+    radiation: "",
+    temperature: "",
+    humidity: "",
+    windSpeed: "",
+  });
   const [imagePreview, setImagePreview] = useState(null);
 
   const handleChange = (e) => {
