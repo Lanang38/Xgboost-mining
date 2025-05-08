@@ -35,7 +35,7 @@ const InputForm = ({ data, onChange, onSubmit }) => {
       />
       <button
         type="submit"
-        className="bg-purple-600 hover:bg-purple-700 transition-colors text-white py-2 rounded-md font-semibold"
+        className=" hover:bg-purple-700 transition-colors bg-purple-600 text-white py-2 rounded-md"
       >
         Tampilkan
       </button>
