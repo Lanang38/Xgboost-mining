@@ -1,34 +1,58 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import WeatherCard from "./components/WeatherCard";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [formData, setFormData] = useState({
+    radiation: "",
+    temperature: "",
+    humidity: "",
+    windSpeed: "",
+  });
+
+  const [displayData, setDisplayData] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setDisplayData(formData);
+    setFormData({
+      radiation: "",
+      temperature: "",
+      humidity: "",
+      windSpeed: "",
+    });
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div
+      className="h-screen w-screen bg-cover bg-center flex justify-center items-center"
+      style={{ backgroundImage: "url('/img/wallpaper.jpg')" }}
+    >
+      <WeatherCard
+        data={formData}
+        display={displayData}
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+        imagePreview={imagePreview}
+        onFileChange={handleFileChange}
+      />
+    </div>
   );
 }
 
