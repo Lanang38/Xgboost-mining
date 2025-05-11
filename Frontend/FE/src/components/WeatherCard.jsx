@@ -7,52 +7,69 @@ const WeatherCard = ({
   display,
   onChange,
   onSubmit,
-  imagePreview,
-  onFileChange,
+  predictionResult,
 }) => {
+  // Judul default
+  const title = predictionResult ?? "Masukan Data";
+
+  // Tentukan icon berdasarkan prediksi
+  let iconSrc = "/img/search.png";
+  if (predictionResult === "Hujan") iconSrc = "/img/rain.png";
+  else if (predictionResult === "Cerah") iconSrc = "/img/clouds.png";
+
   return (
-    <div className="w-full max-w-5xl flex bg-black/40 rounded-2xl backdrop-blur-md shadow-xl">
-      {/* Form Panel with motion */}
+    <div className="w-full max-w-5xl flex bg-black/40 rounded-2xl backdrop-blur-md shadow-xl overflow-hidden">
+      {/* Form Panel */}
       <motion.div
         className="flex-1 p-8 text-white flex justify-center items-center"
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: -20 }}
-        transition={{ duration: 0.6 }} // Slower animation
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
       >
         <div className="w-full max-w-sm">
-          <InputForm
-            data={data}
-            onChange={onChange}
-            onSubmit={onSubmit}
-            onFileChange={onFileChange}
-          />
+          <InputForm data={data} onChange={onChange} onSubmit={onSubmit} />
         </div>
       </motion.div>
 
-      {/* Image Panel with motion */}
+      {/* Display Panel */}
       <motion.div
         className="flex-1 p-8 text-white flex flex-col items-center justify-center text-center"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 20 }}
-        transition={{ duration: 0.6 }} // Slower animation
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
       >
-        <img
-          src={imagePreview || "/img/search.png"}
-          alt="Icon"
-          className="w-24 h-24 mb-4 object-contain"
-        />
-        <h2 className="text-2xl font-bold mb-4">Masukan Data</h2>
+        {/* Container tetap ukuran tetap */}
+        <div className="relative w-32 h-40 mb-4">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={title}
+              className="absolute inset-0 flex flex-col items-center justify-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <img
+                src={iconSrc}
+                alt={title}
+                className="w-24 h-24 object-contain"
+              />
+              <h2 className="text-2xl font-bold mt-2">{title}</h2>
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
+        {/* Output Data */}
         <AnimatePresence>
           {display && (
             <motion.div
               key="output"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.6 }} // Slower animation
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
               className="w-full max-w-sm"
             >
               <OutputDisplay data={display} />

@@ -8,6 +8,7 @@ const InputForm = ({ data, onChange, onSubmit }) => {
         onChange={onChange}
         placeholder="Radiasi Matahari"
         className="bg-white/10 text-white p-3 rounded-md outline-none"
+        required
       />
       <input
         type="number"
@@ -16,6 +17,7 @@ const InputForm = ({ data, onChange, onSubmit }) => {
         onChange={onChange}
         placeholder="Suhu udara (°C)"
         className="bg-white/10 text-white p-3 rounded-md outline-none"
+        required
       />
       <input
         type="number"
@@ -24,6 +26,7 @@ const InputForm = ({ data, onChange, onSubmit }) => {
         onChange={onChange}
         placeholder="Kelembaban udara (%)"
         className="bg-white/10 text-white p-3 rounded-md outline-none"
+        required
       />
       <input
         type="number"
@@ -32,10 +35,11 @@ const InputForm = ({ data, onChange, onSubmit }) => {
         onChange={onChange}
         placeholder="Kecepatan angin (m/s)"
         className="bg-white/10 text-white p-3 rounded-md outline-none"
+        required
       />
       <button
         type="submit"
-        className=" hover:bg-purple-700 transition-colors bg-purple-600 text-white py-2 rounded-md"
+        className="bg-purple-600 hover:bg-purple-700 transition-colors text-white py-2 rounded-md"
       >
         Tampilkan
       </button>
