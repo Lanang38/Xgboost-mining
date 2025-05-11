@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion, animate, useMotionValue } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const AnimatedNumber = ({ value, suffix = "" }) => {
@@ -23,26 +23,10 @@ const AnimatedNumber = ({ value, suffix = "" }) => {
 
 const OutputDisplay = ({ data }) => {
   const items = [
-    {
-      label: "Solar Radiation",
-      value: parseFloat(data.radiation || 0),
-      suffix: "W/m²",
-    },
-    {
-      label: "Temperature",
-      value: parseFloat(data.temperature || 0),
-      suffix: "℃",
-    },
-    {
-      label: "Humidity",
-      value: parseFloat(data.humidity || 0),
-      suffix: "%",
-    },
-    {
-      label: "Wind Speed",
-      value: parseFloat(data.windSpeed || 0),
-      suffix: "Km/h",
-    },
+    { label: "Solar Radiation", value: +data.radiation || 0, suffix: "W/m²" },
+    { label: "Temperature", value: +data.temperature || 0, suffix: "℃" },
+    { label: "Humidity", value: +data.humidity || 0, suffix: "%" },
+    { label: "Wind Speed", value: +data.windSpeed || 0, suffix: "Km/h" },
   ];
 
   return (
