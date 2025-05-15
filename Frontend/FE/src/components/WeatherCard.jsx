@@ -14,8 +14,9 @@ const WeatherCard = ({
 
   // Tentukan icon berdasarkan prediksi
   let iconSrc = "/img/search.png";
-  if (predictionResult === "Hujan") iconSrc = "/img/rain.png";
-  else if (predictionResult === "Cerah") iconSrc = "/img/clouds.png";
+  if (predictionResult === "Prediksi Akan Hujan") iconSrc = "/img/rain.png";
+  else if (predictionResult === "Prediksi Tetap Cerah")
+    iconSrc = "/img/clouds.png";
 
   return (
     <div className="w-full max-w-5xl flex bg-black/40 rounded-2xl backdrop-blur-md shadow-xl overflow-hidden">
@@ -56,7 +57,9 @@ const WeatherCard = ({
                 alt={title}
                 className="w-24 h-24 object-contain"
               />
-              <h2 className="text-2xl font-bold mt-2">{title}</h2>
+              <h2 className="text-2xl font-bold mt-2 whitespace-nowrap">
+                {title.replace(/\s+/g, " ")}
+              </h2>
             </motion.div>
           </AnimatePresence>
         </div>
