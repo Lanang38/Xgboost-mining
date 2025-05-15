@@ -3,14 +3,17 @@ import WeatherCard from "./components/WeatherCard";
 
 function App() {
   const [formData, setFormData] = useState({
-    radiation: "", temperature: "", humidity: "", windSpeed: ""
+    radiation: "",
+    temperature: "",
+    humidity: "",
+    windSpeed: "",
   });
   const [displayData, setDisplayData] = useState(null);
   const [predictionResult, setPredictionResult] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const fetchPrediction = async (dataToSend) => {
@@ -24,13 +27,15 @@ function App() {
       const json = await res.json();
       if (!res.ok) {
         console.warn("BE error:", json.error);
-        setPredictionResult(null);      // fallback ke "Masukan Data"
+        setPredictionResult(null); // fallback ke "Masukan Data"
       } else {
-        setPredictionResult(json.prediction ? "Hujan" : "Cerah");
+        setPredictionResult(
+          json.prediction ? "Prediksi Akan Hujan" : "Prediksi Tetap Cerah"
+        );
       }
     } catch (err) {
       console.warn("Fetch error:", err);
-      setPredictionResult(null);        // fallback
+      setPredictionResult(null); // fallback
     }
   };
 
@@ -38,7 +43,12 @@ function App() {
     e.preventDefault();
     fetchPrediction(formData).then(() => {
       setDisplayData(formData);
-      setFormData({ radiation: "", temperature: "", humidity: "", windSpeed: "" });
+      setFormData({
+        radiation: "",
+        temperature: "",
+        humidity: "",
+        windSpeed: "",
+      });
     });
   };
 

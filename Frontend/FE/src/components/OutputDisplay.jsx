@@ -23,10 +23,10 @@ const AnimatedNumber = ({ value, suffix = "" }) => {
 
 const OutputDisplay = ({ data }) => {
   const items = [
-    { label: "Solar Radiation", value: +data.radiation || 0, suffix: "W/m²" },
-    { label: "Temperature", value: +data.temperature || 0, suffix: "℃" },
-    { label: "Humidity", value: +data.humidity || 0, suffix: "%" },
-    { label: "Wind Speed", value: +data.windSpeed || 0, suffix: "Km/h" },
+    { label: "Radiasi Matahari", value: +data.radiation || 0, suffix: "W/m²" },
+    { label: "Suhu udara", value: +data.temperature || 0, suffix: "℃" },
+    { label: "Kelembaban udara", value: +data.humidity || 0, suffix: "%" },
+    { label: "Kecepatan angin", value: +data.windSpeed || 0, suffix: "m/s" },
   ];
 
   return (

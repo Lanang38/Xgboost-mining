@@ -6,7 +6,7 @@ const InputForm = ({ data, onChange, onSubmit }) => {
         name="radiation"
         value={data.radiation}
         onChange={onChange}
-        placeholder="Radiasi Matahari"
+        placeholder="Radiasi Matahari (W/m²)"
         className="bg-white/10 text-white p-3 rounded-md outline-none"
         required
       />
